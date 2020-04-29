@@ -29,43 +29,43 @@ public class Model {
 			soluzione=null;
 		}
 		List<EventoBlackOut> parziale= new ArrayList<EventoBlackOut>();
-		//int livello=0;
-		ricorsione(parziale, maxYears, maxHours);
+		int livello=0;
+		ricorsione(parziale,livello, maxYears, maxHours);
 		return soluzione;
 	}
 
-	private void ricorsione(List<EventoBlackOut> parziale,int maxYears, int maxHours) {
-		/*if(sommaOreDisservizio(parziale)>maxHours)
-			return;*/
+	private void ricorsione(List<EventoBlackOut> parziale,int livello,int maxYears, int maxHours) {
+		if(sommaOreDisservizio(parziale)>maxHours)
+			return;
 		
-		/*if(troppaDifferenzaAnni(parziale,maxYears))
-			return;*/
+		if(troppaDifferenzaAnni(parziale,maxYears))
+			return;
 		
-		//if(sommaOreDisservizio(parziale)<=maxHours) {
+		if(sommaOreDisservizio(parziale)<=maxHours) {
 			if(numMax<sommaNumeroPersoneCoinvolte(parziale)) {
 				numMax=sommaNumeroPersoneCoinvolte(parziale);
 				this.soluzione= new ArrayList<EventoBlackOut>(parziale);
 				this.Ore=sommaOreDisservizio(parziale);
 			}
-		//}
+		}
 		
-		/*if(livello==this.eventi.size())
-			return;*/
+		if(livello==this.eventi.size())
+			return;
 		
-		for(EventoBlackOut e: this.eventi) {
+		/*for(EventoBlackOut e: this.eventi) {
 			if(!parziale.contains(e)) {
 				parziale.add(e);
-				if(sommaOreDisservizio(parziale)<=maxYears && !troppaDifferenzaAnni(parziale, maxYears)) {
+				if(sommaOreDisservizio(parziale)<=maxHours && !troppaDifferenzaAnni(parziale, maxYears)) {
 					ricorsione(parziale,maxYears,maxHours);
 				}
 				parziale.remove(e);
 			}
-		}
-		/*parziale.add(this.eventi.get(livello));
+		}*/
+		parziale.add(this.eventi.get(livello));
 		ricorsione(parziale, livello+1, maxYears, maxHours);
 		parziale.remove(this.eventi.get(livello));
 		
-		ricorsione(parziale, livello+1, maxYears, maxHours);*/
+		ricorsione(parziale, livello+1, maxYears, maxHours);
 		
 	}
 
